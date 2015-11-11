@@ -4,8 +4,8 @@ var httpProxy = require('http-proxy');
 
 var options = {
     router: {
-        'hyperdata.it': '127.0.0.1:8080',
-        'thoughtcatchers.org': '127.0.0.1:8081'
+        'hyperdata.it': 'localhost:8080',
+        'thoughtcatchers.org': 'localhost:8081'
     }
 };
 console.log('Proxy Routing:')
