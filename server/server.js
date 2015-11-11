@@ -39,4 +39,4 @@ app.use(morgan("combined", {stream: accessLogStream}));
 app.use(serveStatic(www, {"index": ["index.html"]}));
 
 //create node.js http server and listen on port
-http.createServer(app).listen(80);
+http.createServer(app).listen(8081);
