@@ -1,5 +1,7 @@
 data/users.htpasswd
+*.log
 
+# below are for Java
 *.class
 
 # Mobile Tools for Java (J2ME)
