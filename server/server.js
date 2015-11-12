@@ -25,7 +25,7 @@ var app = connect();
 app.use(auth.connect(basic));
 // app.use(favicon(www + "favicon.ico"));
 
-// app.use("/", serveIndex(www, {"icons": true}));
+app.use("/", serveIndex(www, {"icons": true}));
 
 app.use(compression());
 
@@ -33,7 +33,7 @@ app.use(compression());
 app.use(bodyParser.urlencoded());
 
 // logger
-var accessLogStream = fs.createWriteStream(__dirname + "../log/access.log", {flags: "a"});
+var accessLogStream = fs.createWriteStream(__dirname + "/../log/access.log", {flags: "a"});
 
 app.use(morgan("combined", {stream: accessLogStream}));
 
