@@ -18,7 +18,8 @@ $(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: 'http://localhost:8082/'
+      //  url: 'http://localhost:8082/'
+      url: 'http://hyperdata.it:8082/'
     });
 
     // Enable iframe cross-domain access via redirect option:
