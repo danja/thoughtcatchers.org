@@ -23,10 +23,16 @@
         nodeStatic = require('node-static'),
         imageMagick = require('imagemagick'),
         options = {
+          /*
             tmpDir: __dirname + '/tmp',
             publicDir: __dirname + '/public',
             uploadDir: __dirname + '/public/files',
             uploadUrl: '/files/',
+            */
+            tmpDir: __dirname + '/../tmp',
+            publicDir: __dirname + '/../www',
+            uploadDir: __dirname + '/../www/uploads',
+            uploadUrl: '/uploads/',
             maxPostSize: 11000000000, // 11 GB
             minFileSize: 1,
             maxFileSize: 10000000000, // 10 GB
@@ -118,6 +124,7 @@
                 break;
             case 'HEAD':
             case 'GET':
+            console.log("GET called");
                 if (req.url === '/') {
                     setNoCacheHeaders();
                     if (req.method === 'GET') {
@@ -130,6 +137,7 @@
                 }
                 break;
             case 'POST':
+            console.log("POST called");
                 setNoCacheHeaders();
                 handler.post();
                 break;

@@ -4,7 +4,7 @@ Services running from [PM2](https://github.com/Unitech/pm2)
 pm2 start server
 pm2 stop server
 
-pm2 start http-master -x -i 1 -- --config "http-master.conf"
+pm2 start http-master -x -i 1 -- --config "~/thoughtcatchers.org/etc/http-master.conf"
 
 pm2 start all
 pm2 stop all
