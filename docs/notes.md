@@ -25,3 +25,7 @@ config is in etc/http-master.conf
 
 # Authentication
 using basic auth via [http-auth](https://github.com/gevorg/http-auth)
+
+## Installation
+* had to install  imagemagick, git (?)
+* whole load of npm modules - prompted by errors

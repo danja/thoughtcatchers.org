@@ -124,7 +124,7 @@
                 break;
             case 'HEAD':
             case 'GET':
-            console.log("GET called");
+            // console.log("GET called");
                 if (req.url === '/') {
                     setNoCacheHeaders();
                     if (req.method === 'GET') {
@@ -137,7 +137,7 @@
                 }
                 break;
             case 'POST':
-            console.log("POST called");
+          //  console.log("POST called");
                 setNoCacheHeaders();
                 handler.post();
                 break;
@@ -224,7 +224,6 @@
             counter = 1,
             redirect,
             finish = function () {
-              console.log("UploadHandler.prototype.post finish start");
                 counter -= 1;
                 if (!counter) {
                     files.forEach(function (fileInfo) {
@@ -232,7 +231,6 @@
                     });
                     handler.callback({files: files}, redirect);
                 }
-                console.log("UploadHandler.prototype.post finish end");
             };
         form.uploadDir = options.tmpDir;
         form.on('fileBegin', function (name, file) {
@@ -252,7 +250,7 @@
                 fs.unlink(file.path);
                 return;
             }
-            console.log("rename "+options.uploadDir + '/' + fileInfo.name); // danny
+            // console.log("rename "+options.uploadDir + '/' + fileInfo.name); // danny
             fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
             if (options.imageTypes.test(fileInfo.name)) {
                 Object.keys(options.imageVersions).forEach(function (version) {

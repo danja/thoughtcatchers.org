@@ -33,27 +33,11 @@ app.use(compression());
 app.use(bodyParser.urlencoded());
 
 // logger
-var accessLogStream = fs.createWriteStream(__dirname + "/access.log", {flags: "a"});
+var accessLogStream = fs.createWriteStream(__dirname + "../log/access.log", {flags: "a"});
 
 app.use(morgan("combined", {stream: accessLogStream}));
 
 app.use(serveStatic(www, {"index": ["index.html"]}));
-
-/*
-// configure upload middleware
-upload.configure({
-    uploadDir: www + 'uploads',
-    uploadUrl: '/uploads',
-    imageVersions: {
-        thumbnail: {
-            width: 80,
-            height: 80
-        }
-    }
-});
-
-app.use(upload);
-*/
 
 //create node.js http server and listen on port
 http.createServer(app).listen(8080);
