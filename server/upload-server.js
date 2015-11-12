@@ -224,6 +224,7 @@
             counter = 1,
             redirect,
             finish = function () {
+              console.log("UploadHandler.prototype.post finish start");
                 counter -= 1;
                 if (!counter) {
                     files.forEach(function (fileInfo) {
@@ -231,6 +232,7 @@
                     });
                     handler.callback({files: files}, redirect);
                 }
+                console.log("UploadHandler.prototype.post finish end");
             };
         form.uploadDir = options.tmpDir;
         form.on('fileBegin', function (name, file) {
