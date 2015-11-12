@@ -10,7 +10,7 @@ var morgan = require("morgan");
 var serveIndex = require("serve-index");
 var serveStatic = require("serve-static");
 var auth = require('http-auth');
-var upload = require('jquery-file-upload-middleware');
+// var upload = require('jquery-file-upload-middleware');
 
 var www = __dirname + "/../www/";
 
@@ -39,6 +39,7 @@ app.use(morgan("combined", {stream: accessLogStream}));
 
 app.use(serveStatic(www, {"index": ["index.html"]}));
 
+/*
 // configure upload middleware
 upload.configure({
     uploadDir: www + 'uploads',
@@ -50,7 +51,7 @@ upload.configure({
         }
     }
 });
-
+*/
 app.use(upload);
 
 //create node.js http server and listen on port
