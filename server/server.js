@@ -1,6 +1,7 @@
 var fs = require("fs");
 var http = require("http");
-var connect = require("connect");
+var express = require("express");
+// var connect = require("connect");
 // gzip/deflate outgoing responses
 var compression = require("compression");
 var bodyParser = require("body-parser");
@@ -10,22 +11,27 @@ var morgan = require("morgan");
 var serveIndex = require("serve-index");
 var serveStatic = require("serve-static");
 var auth = require('http-auth');
-// var upload = require('jquery-file-upload-middleware');
 
-var www = __dirname + "/../www/";
 
+var config = require("./config");
+var media = require("./media");
 
 var basic = auth.basic({
     realm: "thoughtcatchers",
-    file: __dirname + "/../data/users.htpasswd" //
+    file: __dirname + "/../data/users.htpasswd"
 });
 
-var app = connect();
+var app = express();
+var router = express.Router();
 
 app.use(auth.connect(basic));
 // app.use(favicon(www + "favicon.ico"));
 
-app.use("/", serveIndex(www, {"icons": true}));
+/*
+app.use("/", serveIndex(config.www, {
+    "icons": true
+}));
+*/
 
 app.use(compression());
 
@@ -33,11 +39,29 @@ app.use(compression());
 app.use(bodyParser.urlencoded());
 
 // logger
-var accessLogStream = fs.createWriteStream(__dirname + "/../log/access.log", {flags: "a"});
+var accessLogStream = fs.createWriteStream(config.accessLog, {
+    flags: "a"
+});
 
-app.use(morgan("combined", {stream: accessLogStream}));
+app.use(morgan("combined", {
+    stream: accessLogStream
+}));
 
-app.use(serveStatic(www, {"index": ["index.html"]}));
+app.use(serveStatic(config.www, {
+    "index": ["index.html"]
+}));
+
+app.use("/", router);
+
+router.use(function (req, res, next) {
+    // console.log("/" + req.method);
+    next();
+});
+
+router.get("/uploads", function (req, res) {
+  // console.log("uploads");
+  media.listFiles(res);
+});
 
 //create node.js http server and listen on port
 http.createServer(app).listen(8080);

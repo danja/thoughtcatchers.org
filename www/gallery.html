@@ -2,47 +2,61 @@
 <!-- based on https://github.com/blueimp/Gallery/blob/master/README.md -->
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="js/lib/blueimp-gallery/css/blueimp-gallery.min.css" />
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/south-street/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+
 </head>
 
 <body>
-  <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-      <div class="slides"></div>
-      <h3 class="title"></h3>
-      <a class="prev">‹</a>
-      <a class="next">›</a>
-      <a class="close">×</a>
-      <a class="play-pause"></a>
-      <ol class="indicator"></ol>
+  <!-- The dialog widget -->
+  <div id="blueimp-gallery-dialog" data-show="fade" data-hide="fade">
+      <!-- The gallery widget  -->
+      <div class="blueimp-gallery blueimp-gallery-carousel blueimp-gallery-controls">
+          <div class="slides"></div>
+          <a class="prev">‹</a>
+          <a class="next">›</a>
+          <a class="play-pause"></a>
+      </div>
   </div>
 
 <div id="links">
+
+  <!--
     <a href="/uploads/pinto.jpg" title="Banana">
       pinto
-        <!-- img src="images/thumbnails/banana.jpg" alt="Banana" -->
     </a>
     <a href="/uploads/thoughtcatchers.png" title="Apple">
       logo
-        <!-- img src="images/thumbnails/apple.jpg" alt="Apple"-->
     </a>
     <a href="/uploads/tile.jpg" title="Orange">
       tile
-        <!-- img src="images/thumbnails/orange.jpg" alt="Orange"-->
     </a>
+  -->
 </div>
 
-<script src="js/lib/blueimp-gallery/js/blueimp-gallery.min.js"></script>
+<!-- mustache template compiler -->
+<script src="js/lib/hogan-3.0.2.js"></script>
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<script src="js/gallery.js"></script>
+
 <script>
-document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
+  $(function() {
+//    SchemaEdit.init();
+
+console.log("Go!");
+var insertLinks = function(html){
+  console.log("insertLinks = "+html);
+  $("#links").append(html);
 };
+Gallery.gatherLinks(insertLinks);
+  });
 </script>
+
+<script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="js/lib/jquery.image-gallery.js"></script>
+
 </body>
 
 </html>
