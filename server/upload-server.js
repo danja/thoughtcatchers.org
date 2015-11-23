@@ -13,6 +13,8 @@
 /*jslint nomen: true, regexp: true, unparam: true, stupid: true */
 /*global require, __dirname, unescape, console */
 
+var config = require("./config");
+
 (function (port) {
     'use strict';
     var path = require('path'),
@@ -299,4 +301,6 @@
     } else {
         require('http').createServer(serve).listen(port);
     }
-}(8082));
+}(config.uploaderPort));
+
+console.log("upload server on port "+ config.uploaderPort);

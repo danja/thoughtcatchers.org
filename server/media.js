@@ -18,11 +18,11 @@ var media = {
         var preLength = config.www.length;
         var fileList = [];
         var options = {};
-        console.log("config.uploadsPath = " + config.uploadsPath);
+      //  console.log("config.uploadsPath = " + config.uploadsPath);
 
         glob(config.uploadsPath + "/*", options, function (er, files) {
             for(var i = 0; i < files.length; i++) {
-                console.log("files[i] = " + files[i]);
+              //  console.log("files[i] = " + files[i]);
                 var entry = {};
                 entry["file"] = files[i].substring(preLength);
                 fileList.push(entry);
@@ -30,7 +30,7 @@ var media = {
             var fileMap = {
                 "files": fileList
             };
-            console.log("fileMap = \n" + JSON.stringify(fileMap, false, 4));
+          //  console.log("fileMap = \n" + JSON.stringify(fileMap, false, 4));
             var html = utils.templater(templates.html.fileList, fileMap)
 
             res.send(html);

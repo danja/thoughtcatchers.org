@@ -12,7 +12,6 @@ var serveIndex = require("serve-index");
 var serveStatic = require("serve-static");
 var auth = require('http-auth');
 
-
 var config = require("./config");
 var media = require("./media");
 
@@ -43,25 +42,62 @@ var accessLogStream = fs.createWriteStream(config.accessLog, {
     flags: "a"
 });
 
+/*
 app.use(morgan("combined", {
     stream: accessLogStream
 }));
+*/
 
-app.use(serveStatic(config.www, {
-    "index": ["index.html"]
-}));
+app.use(serveStatic(config.www));
 
 app.use("/", router);
 
+router.get("/uploads", function (req, res, next) {
+    // console.log("uploads");
+    media.listFiles(res);
+    next();
+});
+
+
+
+/*
+"index": ["/index.html"],
+"about": ["/about.html"],
+"contact": ["/contact.html"]
+*/
+
+/*
+app.use("/", router);
+
+router.get("/", function (req, res) {
+    res.sendFile(path + "index.html");
+});
+*/
+
+/*
+router.get("/about", function (req, res) {
+    res.sendFile(path + "about.html");
+});
+
+router.get("/contact", function (req, res) {
+    res.sendFile(path + "contact.html");
+});
+*/
+
+/* catch all
+app.use("*",function(req,res){
+  res.sendFile(path + "404.html");
+});
+*/
+/*
 router.use(function (req, res, next) {
     // console.log("/" + req.method);
     next();
 });
+*/
 
-router.get("/uploads", function (req, res) {
-  // console.log("uploads");
-  media.listFiles(res);
-});
 
+
+console.log("serving on port " + config.port);
 //create node.js http server and listen on port
-http.createServer(app).listen(8080);
+http.createServer(app).listen(config.port);
