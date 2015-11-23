@@ -11,6 +11,7 @@ var morgan = require("morgan");
 var serveIndex = require("serve-index");
 var serveStatic = require("serve-static");
 var auth = require('http-auth');
+var cors = require('cors');
 
 var config = require("./config");
 var media = require("./media");
@@ -21,8 +22,10 @@ var basic = auth.basic({
 });
 
 var app = express();
+
+app.use(cors());
 var router = express.Router();
-var cors = require('cors');
+
 
 app.use(auth.connect(basic));
 // app.use(favicon(www + "favicon.ico"));
@@ -34,8 +37,6 @@ app.use("/", serveIndex(config.www, {
 */
 
 app.use(compression());
-
-app.use(cors());
 
 // parse urlencoded request bodies into req.body
 app.use(bodyParser.urlencoded());
