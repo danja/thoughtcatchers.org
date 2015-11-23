@@ -22,6 +22,7 @@ var basic = auth.basic({
 
 var app = express();
 var router = express.Router();
+var cors = require('cors');
 
 app.use(auth.connect(basic));
 // app.use(favicon(www + "favicon.ico"));
@@ -33,6 +34,8 @@ app.use("/", serveIndex(config.www, {
 */
 
 app.use(compression());
+
+app.use(cors());
 
 // parse urlencoded request bodies into req.body
 app.use(bodyParser.urlencoded());
