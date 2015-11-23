@@ -12,7 +12,7 @@ var Gallery = (function() {
   var Gallery = {
 
     gatherLinks: function(callback) {
-      $.get("http://localhost:8080/uploads", function(data) {
+      $.get("http://127.0.0.1:8080/uploads", function(data) {
         callback(data);
       //  alert( "Load was performed."+JSON.stringify(data,false,4));
       });
