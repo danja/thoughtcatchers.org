@@ -6,18 +6,24 @@
  *     fit in one line.
  */
 
-var Gallery = (function() {
-  "use strict";
+var Gallery = (function () {
+    "use strict";
 
-  var Gallery = {
+    var Gallery = {
 
-    gatherLinks: function(callback) {
-      $.get("http://hyperdata.it:8080/uploads", function(data) {
-        callback(data);
-      //  alert( "Load was performed."+JSON.stringify(data,false,4));
-      });
-    }
-  };
+        gatherLinks: function (callback) {
+            var request = $.ajax({
+                    url: "http://hyperdata.it:8080/uploads",
+                });
 
-  return Gallery;
+                request.done(function (data) {
+                    callback(data);
+                });
+                request.fail(function (jqXHR, textStatus) {
+                    console.log("Request failed: " + textStatus);
+                });
+
+        }
+    };
+    return Gallery;
 }());
