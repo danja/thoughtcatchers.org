@@ -16,10 +16,13 @@ var cors = require('cors');
 var config = require("./config");
 var media = require("./media");
 
+/*
 var basic = auth.basic({
     realm: "thoughtcatchers",
     file: __dirname + "/../data/users.htpasswd"
 });
+app.use(auth.connect(basic));
+*/
 
 var app = express();
 
@@ -27,7 +30,7 @@ app.use(cors());
 var router = express.Router();
 
 
-app.use(auth.connect(basic));
+
 // app.use(favicon(www + "favicon.ico"));
 
 /*
