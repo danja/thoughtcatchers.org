@@ -2,6 +2,8 @@ data/users.htpasswd
 *.log
 tmp/*
 
+server/credentials.js
+
 # below are for Java
 *.class
 

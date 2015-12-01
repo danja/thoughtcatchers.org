@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Cube Demo</title>
+	<!--[if lte IE 8]>
+ 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<!-- script src="js/zepto/zepto.js" type="text/javascript" charset="utf-8"></script -->
+	<script src="/js/lib/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/css3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/flux.browser.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vector.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/cube.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/imagecube.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/utils.js"></script>
+	<script src="/js/gallery.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			//    SchemaEdit.init();
+
+			console.log("Go!");
+			var insertLinks = function(html) {
+				$(html).find("a").each(
+					function() {
+						var href = $(this).attr("href");
+
+						//	<img src="images/basil.jpg" alt="Basil" />
+						if (href.endsWith("jpg") || href.endsWith("png")) {
+							console.log("href = " + href);
+							var img = $("<img>");
+							img.attr("src", href);
+							img.log();
+							$("#cube").append(img);
+						}
+					}
+				);
+				console.log("insertLinks = " + html);
+				$("#links").append(html);
+			};
+			Gallery.gatherLinks(insertLinks);
+
+
+
+
+			if (!flux.browser.supports3d) {
+				alert("Your browser doesn't support 3D transformations");
+			} else {
+				window.myImageCube = new ImageCube('#cube', {
+					size: 400
+				});
+
+				$(document.documentElement).bind('keydown', function(e) {
+					switch (e.keyCode) {
+						case 37: // left
+							window.myImageCube.cube.left();
+							event.preventDefault();
+							break;
+
+						case 38: // up
+							window.myImageCube.cube.up();
+							event.preventDefault();
+							break;
+
+						case 39: // right
+							window.myImageCube.cube.right();
+							event.preventDefault();
+							break;
+
+						case 40: // down
+							window.myImageCube.cube.down();
+							event.preventDefault();
+							break;
+					};
+				});
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<section id="container">
+		<div id="cube">
+			<!--
+			<img src="images/basil.jpg" alt="Basil" />
+			<img src="images/bat.jpg" alt="Bat" />
+			<img src="images/box.jpg" alt="Box" />
+			<img src="images/cake.jpg" alt="Cake" />
+			<img src="images/data.jpg" alt="Data" />
+			<img src="images/pooch.jpg" alt="Pooch" />
+		-->
+		</div>
+		<div id="instructions">
+			Press 'up', 'down', 'left', 'right'
+		</div>
+	</section>
+</body>
+
+</html>
