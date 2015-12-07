@@ -19,7 +19,7 @@ $(function () {
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
       //  url: 'http://localhost:8082/' 'http://hyperdata.it:8082/'
-      url: 'http://localhost:8082/'
+      url: Config.UPLOAD_HOST
     });
 
     // Enable iframe cross-domain access via redirect option:
