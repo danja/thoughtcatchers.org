@@ -1,8 +1,9 @@
 *.log
 tmp/*
 
+www/uploads
+
 etc/users.htpasswd
-etc/config.js
 etc/credentials.js
 
 # below are for Java
