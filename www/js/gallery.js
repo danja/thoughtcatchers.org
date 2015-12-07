@@ -13,7 +13,7 @@ var Gallery = (function () {
 
         gatherLinks: function (callback) {
             var request = $.ajax({
-                    url: "http://hyperdata.it:8080/uploads",
+                    url: "/uploads",
                 });
 
                 request.done(function (data) {

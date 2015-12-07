@@ -13,7 +13,7 @@
 /*jslint nomen: true, regexp: true, unparam: true, stupid: true */
 /*global require, __dirname, unescape, console */
 
-var config = require("./config");
+var config = require("../etc/config");
 
 (function (port) {
     'use strict';

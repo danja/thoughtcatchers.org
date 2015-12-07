@@ -30,20 +30,30 @@
 						//	<img src="images/basil.jpg" alt="Basil" />
 						if (href.endsWith("jpg") || href.endsWith("png")) {
 							console.log("href = " + href);
+							href = encodeURI(href);
 							var img = $("<img>");
 							img.attr("src", href);
 							img.log();
-							$("#cube").append(img);
+							$("#cube").prepend(img);
 						}
 					}
 				);
 				console.log("insertLinks = " + html);
 				$("#links").append(html);
+				makeCube();
 			};
 			Gallery.gatherLinks(insertLinks);
 
 
-
+var makeCube = function(){
+	if (!flux.browser.supports3d) {
+		alert("Your browser doesn't support 3D transformations");
+	} else {
+		window.myImageCube = new ImageCube('#cube', {
+			size: 400
+		});
+}
+};
 
 			if (!flux.browser.supports3d) {
 				alert("Your browser doesn't support 3D transformations");

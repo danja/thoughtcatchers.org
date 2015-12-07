@@ -62,7 +62,7 @@ app.use("/", router);
 router.get("/uploads", function (req, res, next) {
     // console.log("uploads");
     media.listFiles(res);
-    next();
+  //  next();
 });
 
 
