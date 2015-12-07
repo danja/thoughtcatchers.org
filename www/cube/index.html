@@ -55,36 +55,23 @@ var makeCube = function(){
 }
 };
 
-			if (!flux.browser.supports3d) {
-				alert("Your browser doesn't support 3D transformations");
-			} else {
-				window.myImageCube = new ImageCube('#cube', {
-					size: 400
-				});
-
-				$(document.documentElement).bind('keydown', function(e) {
-					switch (e.keyCode) {
-						case 37: // left
-							window.myImageCube.cube.left();
-							event.preventDefault();
-							break;
-
-						case 38: // up
-							window.myImageCube.cube.up();
-							event.preventDefault();
-							break;
-
-						case 39: // right
-							window.myImageCube.cube.right();
-							event.preventDefault();
-							break;
-
-						case 40: // down
-							window.myImageCube.cube.down();
-							event.preventDefault();
-							break;
-					};
-				});
+var loop = function(){
+	for(var i=0;i<10000;i++){
+		if((i % 5) == 0){
+			window.myImageCube.cube.left();
+		}
+		if((i % 7) == 0){
+			window.myImageCube.cube.right();
+		}
+		if((i % 11) == 0){
+			window.myImageCube.cube.up();
+		}
+		if((i % 13) == 0){
+			window.myImageCube.cube.down();
+		}
+	}
+}
+				
 			}
 		});
 	</script>
@@ -101,9 +88,6 @@ var makeCube = function(){
 			<img src="images/data.jpg" alt="Data" />
 			<img src="images/pooch.jpg" alt="Pooch" />
 		-->
-		</div>
-		<div id="instructions">
-			Press 'up', 'down', 'left', 'right'
 		</div>
 	</section>
 </body>
