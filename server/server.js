@@ -13,7 +13,7 @@ var serveStatic = require("serve-static");
 var auth = require('http-auth');
 var cors = require('cors');
 
-var config = require("./config");
+var config = require("../etc/config");
 var media = require("./media");
 
 /*

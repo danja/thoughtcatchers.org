@@ -1,8 +1,9 @@
-data/users.htpasswd
 *.log
 tmp/*
 
-server/credentials.js
+etc/users.htpasswd
+etc/config.js
+etc/credentials.js
 
 # below are for Java
 *.class

@@ -1,5 +1,5 @@
 var glob = require("glob");
-var config = require("./config");
+var config = require("../etc/config");
 var utils = require("./utils");
 var templates = require("./templates");
 
