@@ -9,9 +9,9 @@
 var Config = (function() {
   "use strict";
 
-  // This is the public interface of the Module.
+  // This is the public interface of the Module. "http://hyperdata.it:8082/"
   var Config = {
-"UPLOAD_HOST" : "http://hyperdata.it:8082/"
+"UPLOAD_HOST" : "http://localhost:8082/"
   };
 
 

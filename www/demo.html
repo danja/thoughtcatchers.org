@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Demo CSS3</title>
+	<!--[if lte IE 8]>
+ 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<!-- Use Zepto for best performance on WebKit based browser -->
+	<!-- <script src="js/zepto/zepto.js" type="text/javascript" charset="utf-8"></script> -->
+
+	<!-- Use jQuery for best compatibility with other CSS3 enabled browsers -->
+	<script src="js/lib/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/lib/flux.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/gallery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+
+			console.log("Go!");
+			var insertLinks = function(html) {
+				$(html).find("a").each(
+					function() {
+						var href = $(this).attr("href");
+
+						//	<img src="images/basil.jpg" alt="Basil" />
+						if (href.endsWith("jpg") || href.endsWith("png")) {
+							console.log("href = " + href);
+							href = encodeURI(href);
+							var img = $("<img>");
+							img.attr("src", href);
+							img.attr("height", "400");
+							img.attr("width", "400");
+							//	img.attr("title", "tit");
+							img.log();
+							$("#slider").prepend(img);
+						}
+					}
+				);
+				console.log("insertLinks = " + html);
+				//	$("#slider").append(html);
+				console.log("slider = ");
+				$("#slider").log();
+				makeCube();
+			};
+			Gallery.gatherLinks(insertLinks);
+
+
+			var makeCube = function() {
+				if (!flux.browser.supportsTransitions)
+					alert("Flux Slider requires a browser that supports CSS3 transitions");
+
+				window.f = new flux.slider('#slider', {
+					width: 400,
+					height: 400,
+					autoplay: true,
+					delay: 2000,
+					pagination: false,
+					transitions: ["cube", "bars3d"]
+				});
+
+				$('#slider').bind('fluxTransitionEnd', function(event) {
+					var r = Math.floor(Math.random() * 10);
+				});
+			};
+
+		});
+	</script>
+</head>
+
+<body>
+	<section class="container">
+		<h1>
+		</h1>
+
+		<div id="slider">
+		</div>
+		<footer>
+		</footer>
+	</section>
+</body>
+
+</html>

@@ -47,6 +47,10 @@ var config = require("../etc/config");
                 'thumbnail': {
                     width: 80,
                     height: 80
+                },
+                'full': {
+                    width: 400,
+                    height: 400
                 }
             },
             accessControl: {
@@ -218,6 +222,7 @@ var config = require("../etc/config");
         });
     };
     UploadHandler.prototype.post = function () {
+      console.log("UploadHandler.prototype.post");
         var handler = this,
             form = new formidable.IncomingForm(),
             tmpFiles = [],
@@ -227,10 +232,12 @@ var config = require("../etc/config");
             redirect,
             finish = function () {
                 counter -= 1;
+                console.log("counter = "+counter);
                 if (!counter) {
                     files.forEach(function (fileInfo) {
                         fileInfo.initUrls(handler.req);
                     });
+                    console.log("files = "+JSON.stringify(files, false, 4));
                     handler.callback({files: files}, redirect);
                 }
             };
@@ -252,12 +259,14 @@ var config = require("../etc/config");
                 fs.unlink(file.path);
                 return;
             }
-            // console.log("rename "+options.uploadDir + '/' + fileInfo.name); // danny
+             console.log("rename "+options.uploadDir + '/' + fileInfo.name); // danny
             fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
+            console.log("options = "+JSON.stringify(options, false,4));
             if (options.imageTypes.test(fileInfo.name)) {
                 Object.keys(options.imageVersions).forEach(function (version) {
                     counter += 1;
                     var opts = options.imageVersions[version];
+                    console.log("imageMagick.resize "+opts.width);
                     imageMagick.resize({
                         width: opts.width,
                         height: opts.height,

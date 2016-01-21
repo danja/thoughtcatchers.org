@@ -21,6 +21,7 @@
 		$(function() {
 			//    SchemaEdit.init();
 
+
 			console.log("Go!");
 			var insertLinks = function(html) {
 				$(html).find("a").each(
@@ -46,32 +47,22 @@
 
 
 var makeCube = function(){
+	console.log("makeCube");
 	if (!flux.browser.supports3d) {
 		alert("Your browser doesn't support 3D transformations");
 	} else {
 		window.myImageCube = new ImageCube('#cube', {
-			size: 400
+			size: 400,
+			autoplay: true,
+			delay: 1000,
+			pagination:true,
+				 captions:true,
+controls:true
 		});
+
 }
 };
-
-var loop = function(){
-	for(var i=0;i<10000;i++){
-		if((i % 5) == 0){
-			window.myImageCube.cube.left();
-		}
-		if((i % 7) == 0){
-			window.myImageCube.cube.right();
-		}
-		if((i % 11) == 0){
-			window.myImageCube.cube.up();
-		}
-		if((i % 13) == 0){
-			window.myImageCube.cube.down();
-		}
-	}
-}
-			}
+			});
 
 	</script>
 </head>
